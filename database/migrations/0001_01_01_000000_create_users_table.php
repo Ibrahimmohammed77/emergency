@@ -11,8 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // database/migrations/xxxx_xx_xx_xxxxxx_create_users_table.php
-
+       
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');

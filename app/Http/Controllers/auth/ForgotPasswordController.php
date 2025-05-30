@@ -19,6 +19,7 @@ class ForgotPasswordController extends Controller
     {
         $request->validate(['email' => 'required|email']);
 
+        // ضبط broker بناءً على النوع الصحيح
         $this->broker = $type === 'user' ? 'users' : 'medical_centers';
 
         $response = Password::broker($this->broker)->sendResetLink(

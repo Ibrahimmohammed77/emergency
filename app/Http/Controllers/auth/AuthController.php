@@ -111,7 +111,7 @@ class AuthController extends Controller
                     'latitude' => $request->latitude,
                     'longitude' => $request->longitude,
                     'specialization' => $request->specialization,
-                    'status' => 'pending',
+                    'status' => 'inactive',
                 ]));
 
                 event(new Registered($medicalCenter));

@@ -3,15 +3,18 @@
 namespace App\Models;
 
 use App\Notifications\CustomResetPasswordNotification;
+use App\Notifications\CustomVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable;
-
+    use HasFactory, Notifiable,CanResetPassword;
+    
     protected $fillable = [
         'name',
         'email',
@@ -44,8 +47,12 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(EmergencyRequest::class);
     }
 
-    public function sendPasswordResetNotification($token)
+   public function sendPasswordResetNotification($token)
+{
+    $this->notify(new CustomResetPasswordNotification($token, 'user'));
+}
+    public function sendEmailVerificationNotification()
     {
-        $this->notify(new CustomResetPasswordNotification($token, 'user'));
+        $this->notify(new CustomVerifyEmail);
     }
 }

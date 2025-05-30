@@ -6,7 +6,7 @@
         <h1 class="h3 mb-0 text-gray-800">
             <i class="fas fa-users-cog ms-2"></i> إدارة المستخدمين
         </h1>
-        <a href="{{ route('admin.admins.create') }}" class="btn btn-primary">
+        <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
             <i class="fas fa-plus ms-1"></i> مستخدم جديد
         </a>
     </div>
@@ -27,6 +27,15 @@
         </div>
         
         <div class="card-body">
+            @if(session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+
             <div class="table-responsive">
                 <table class="table table-hover table-bordered text-center" id="usersTable" width="100%" cellspacing="0">
                     <thead class="bg-light">
@@ -60,11 +69,11 @@
                             </td>
                             <td>
                                 <div class="btn-group btn-group-sm" role="group">
-                                    <a href="{{ route('admin.users.index', $user->id) }}" 
+                                    <a href="{{ route('admin.users.show', $user->id) }}" 
                                        class="btn btn-info" title="عرض التفاصيل">
                                         <i class="fas fa-eye"></i>
                                     </a>
-                                    <a href="{{ route('admin.users.index', $user->id) }}" 
+                                    <a href="{{ route('admin.users.edit', $user->id) }}" 
                                        class="btn btn-warning" title="تعديل">
                                         <i class="fas fa-edit"></i>
                                     </a>
@@ -76,6 +85,15 @@
                                                 title="{{ $user->status == 'active' ? 'تعطيل' : 'تفعيل' }}"
                                                 onclick="return confirm('هل أنت متأكد من تغيير حالة المستخدم؟')">
                                             <i class="fas fa-{{ $user->status == 'active' ? 'ban' : 'check' }}"></i>
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger" 
+                                                title="حذف"
+                                                onclick="return confirm('هل أنت متأكد من حذف هذا المستخدم؟')">
+                                            <i class="fas fa-trash"></i>
                                         </button>
                                     </form>
                                 </div>
@@ -93,7 +111,7 @@
 @section('styles')
 <style>
     body {
-        font-family: 'Tahoma', 'Arial', sans-serif;
+        font-family: 'Tajawal', sans-serif;
     }
     .table {
         text-align: right;
@@ -112,14 +130,6 @@
     .btn-group .btn:last-child {
         border-top-left-radius: 0.25rem;
         border-bottom-left-radius: 0.25rem;
-    }
-    .dataTables_filter label {
-        display: flex;
-        align-items: center;
-    }
-    .dataTables_filter input {
-        margin-right: 0.5rem;
-        margin-left: 0;
     }
     .ms-1 {
         margin-right: 0.25rem !important;

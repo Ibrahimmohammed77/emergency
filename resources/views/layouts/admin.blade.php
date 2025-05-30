@@ -60,25 +60,29 @@
                             لوحة التحكم
                         </a>
 
-                        {{-- <a class="nav-link" href="{{ route('admin.admins.index') }}">
+                        @can('view-admins')
+                        <a class="nav-link" href="{{ route('admin.admins.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
                             المشرفون
-                        </a> --}}
+                        </a>
+                        @endcan
+
                         <a class="nav-link" href="{{ route('admin.users.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             المستخدمون
                         </a>
+
                         <a class="nav-link" href="{{ route('admin.medical-centers.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-hospital"></i></div>
                             المراكز الطبية
                         </a>
+
                         <a class="nav-link" href="{{ route('admin.accidents.index') }}">
                             <div class="sb-nav-link-icon"><i class="fas fa-car-crash"></i></div>
                             الحوادث
                         </a>
                     </div>
                 </div>
-               
             </nav>
         </div>
 
@@ -86,6 +90,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
+                    @include('partials.alerts')
                     @yield('content')
                 </div>
             </main>
@@ -117,6 +122,16 @@
             $.extend(true, $.fn.dataTable.defaults, {
                 language: {
                     url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/ar.json"
+                }
+            });
+            
+            // Initialize all DataTables
+            $('.data-table').DataTable();
+            
+            // Confirm before delete
+            $('.delete-form').on('submit', function(e) {
+                if (!confirm('هل أنت متأكد من الحذف؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                    e.preventDefault();
                 }
             });
         });
