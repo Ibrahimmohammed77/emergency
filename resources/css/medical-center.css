@@ -1,0 +1,46 @@
+/* Sidebar Styling */
+.sb-sidenav {
+    width: 250px; /* Fixed width for the sidebar */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+}
+
+.sb-sidenav .nav-link {
+    color: rgba(255, 255, 255, 0.75); /* Semi-transparent text color */
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+}
+
+.sb-sidenav .nav-link:hover {
+    color: white; /* Full white color on hover */
+    background-color: rgba(255, 255, 255, 0.1); /* Slight highlight effect */
+    border-radius: 0.375rem; /* Rounded corners for hover effect */
+}
+
+.sb-sidenav .sb-nav-link-icon {
+    min-width: 24px; /* Ensure icons have consistent spacing */
+    text-align: center;
+}
+
+.sb-sidenav-menu-heading {
+    font-size: 0.75rem; /* Smaller font size for headings */
+    letter-spacing: 1px; /* Add spacing between letters for a modern look */
+    margin-top: 1rem; /* Space above each section heading */
+}
+
+/* Sidebar Footer */
+.sb-sidenav-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator line */
+    padding: 1rem; /* Padding inside the footer */
+}
+
+/* Gradient Background */
+.bg-gradient {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+/* Tooltip Styling */
+.tooltip-inner {
+    background-color: #1e3c72; /* Match tooltip color with sidebar gradient */
+    color: white;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+}

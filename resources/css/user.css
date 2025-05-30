@@ -1,0 +1,81 @@
+/* Navbar Customization */
+.navbar {
+    padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.card-header {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid #e3e6f0;
+    font-weight: 600;
+}
+
+/* Stats Cards */
+.card.bg-primary, 
+.card.bg-success,
+.card.bg-danger,
+.card.bg-warning {
+    color: white;
+}
+
+.card.bg-primary a,
+.card.bg-success a,
+.card.bg-danger a,
+.card.bg-warning a {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+/* Table Styling */
+.table {
+    margin-bottom: 0;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Badge Styling */
+.badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+}
+
+/* Button Styling */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Alert Styling */
+.alert {
+    border: none;
+}
+
+/* Emergency Form Styling */
+#urgency_level option[value="critical"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .table-responsive {
+        border: none;
+    }
+}

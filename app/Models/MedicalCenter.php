@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Models;
+
+use App\Notifications\CustomResetPasswordNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class MedicalCenter extends Authenticatable  implements MustVerifyEmail
+{
+    use HasFactory,Notifiable;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'phone',
+        'address',
+        'latitude',
+        'longitude',
+        'specialization',
+        'status',
+        'password'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    public function accidents()
+    {
+        return $this->hasMany(Accident::class);
+    }
+    public function sendPasswordResetNotification($token)
+{
+    $this->notify(new CustomResetPasswordNotification($token, 'medical_center'));
+}
+}
